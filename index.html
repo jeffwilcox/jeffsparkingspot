@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Building 42 Giving Campaign parking space">
+    <meta name="author" content="Jeff Wilcox">
+    <!--
+    <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
+    -->
+
+    <title>Building 42 JWilcox Parking Spot Status</title>
+
+    <script type="text/javascript">
+    var availableDates = [
+      "May 16 2014",
+      "May 13 2014",
+      "Mar 12 2014"
+    ];
+    </script>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-inverse" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">Jeff's Parking Space</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <div>
+        <h1>Building 42 P1 Reserved Parking</h1>
+        <p class="lead">In the summer I sometimes commute to work via cycle. On these days, my space remains available. Favorite this page!</p>
+        <div id="space"><h1>Sorry, space unavailable.</h1></div>
+        <p>Many years, in conjunction with the Microsoft and United Way Giving Campaign Auction, I donate and acquire for a calendar year a dedicated parking space on campus. The parking space is enforced by secured based on the wishes of the space's owner.</p>
+        <p>That said, the space is dedicated, and so I do work with security when the space is occupied, and they often prefer to tow such vehicles rather than tracking down car owners on campus to move their vehicle. This is expensive, but you'll see the space is clearly marked with a towing warning.</p>
+        <p>Feel free to park on any day on which this site says the space is available. <strong>Please do not park any other time.</strong></p>
+        <p>Thanks,<br />
+        JWilcox<br />
+        2014 Calendar Year</p>
+        <p><strong>Past dates:</strong><br /><small id="previous"></small></p>
+        <p><strong>Future scheduled dates:</strong><br /><small id="future"></small></p>
+        <h4>Space location</h4>
+        <p>Near the electric vehicle charging stations closest to the 42 employee elevator area on P1.<br />
+        <img src="JWilcox42.png" style="width:843px;height:445px" />
+      </div>
+
+    </div><!-- /.container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+    var today = undefined;
+    var now = new Date();
+    var past = [];
+    var future = [];
+
+    for (var i = 0; i < availableDates.length; i++) {
+      var d = new Date(availableDates[i] + " 7:00:00 AM");
+      if (d.getUTCDate() == now.getUTCDate() && 
+          d.getUTCMonth() == now.getUTCMonth() &&
+          d.getUTCFullYear() == now.getUTCFullYear()) {
+        today = d;
+      } else {
+        ((d < now) ? past : future).push(d);
+      }
+    }
+
+    var dateList = function(darray) {
+      if (darray.length == 0) {
+        return "None";
+      }
+      return darray.join(', ');
+    }
+
+    if (today !== undefined) {
+      $('#space').html('<h1 style="color: green">Available today ' + today.getMonth() + "/" + today.getDate() + "</h1>");
+    }
+
+    $('#previous').text(dateList(past));
+    $('#future').text(dateList(future));
+    </script>
+  </body>
+</html>
