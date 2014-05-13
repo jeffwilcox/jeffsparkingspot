@@ -48,7 +48,7 @@
       <div>
         <h1>Building 42 P1 Reserved Parking</h1>
         <p class="lead">In the summer I sometimes commute to work via cycle. On these days, my space remains available. Favorite this page!</p>
-        <div id="space"><h1>Sorry, space unavailable.</h1></div>
+        <div id="space"><h1>Checking availability...</h1></div>
         <p>Many years, in conjunction with the Microsoft and United Way Giving Campaign Auction, I donate and acquire for a calendar year a dedicated parking space on campus. The parking space is enforced by secured based on the wishes of the space's owner.</p>
         <p>That said, the space is dedicated, and so I do work with security when the space is occupied, and they often prefer to tow such vehicles rather than tracking down car owners on campus to move their vehicle. This is expensive, but you'll see the space is clearly marked with a towing warning.</p>
         <p>Feel free to park on any day on which this site says the space is available. <strong>Please do not park any other time.</strong></p>
@@ -96,6 +96,8 @@
 
     if (today !== undefined) {
       $('#space').html('<h1 style="color: green">Available today ' + today.getMonth() + "/" + today.getDate() + "</h1>");
+    } else {
+      $('#space').html('<h1 style="color: red">Sorry, space unavailable.</h1>");
     }
 
     $('#previous').text(dateList(past));
